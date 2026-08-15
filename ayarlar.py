@@ -8,3 +8,14 @@ class Ayarlar:
     AI_PROVIDER = os.environ.get('AI_PROVIDER', 'groq')
     BUSINESS_CONTEXT = os.environ.get('BUSINESS_CONTEXT', '...')
     CORS_ALLOWED_ORIGINS = os.environ.get('CORS_ALLOWED_ORIGINS', '*')
+
+class GelistirmeAyarlari(Ayarlar):
+    DEBUG = True
+
+class UretimAyarlari(Ayarlar):
+    DEBUG = False
+
+ayar_secici = {
+    "gelistirme": GelistirmeAyarlari,
+    "uretim": UretimAyarlari,
+}
