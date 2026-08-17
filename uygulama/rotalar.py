@@ -12,7 +12,6 @@ sayfa_arayuzu = Blueprint("sayfalar", __name__)
 @sayfa_arayuzu.route("/")
 def karsilama_sayfasi():
     """Son kullanıcıya (müşteriye) gösterilen, AI ile sohbet edilen ana web sayfasını sunar."""
-    # BURASI GÜNCELLENDİ: karsilama.html yerine index.html
     return render_template("index.html")
 
 @sayfa_arayuzu.route("/panel")
@@ -29,7 +28,7 @@ def sohbet_et():
     Ön yüzden gelen sohbet mesajını alır, yapay zeka servisine iletir
     ve üretilen yanıtı JSON formatında ön yüze geri döndürür.
     """
-    veri = request.json
+    veri = request.get_json(silent=True) or {}
     mesaj = veri.get("mesaj")
     gecmis = veri.get("gecmis", [])
 
@@ -48,7 +47,7 @@ def aday_kaydet():
     Ziyaretçinin iletişim formundan gönderdiği isim ve telefon bilgilerini
     alır ve veritabanı katmanını kullanarak kaydeder.
     """
-    veri = request.json
+    veri = request.get_json(silent=True) or {}
     isim = veri.get("isim")
     telefon = veri.get("telefon")
     mesaj = veri.get("mesaj", "")

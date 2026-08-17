@@ -6,8 +6,9 @@ loglayici = logging.getLogger(__name__)
 
 class YapayZekaServisi:
     def yanit_uret(self, kullanici_mesaji: str, sohbet_gecmisi: list = None) -> str:
+        # E'AI_PROVIDER' arıyoruz
+        return self._groq_cagir(kullanici_mesaji, sohbet_gecmisi or [])
 
-        self._groq_cagir(kullanici_mesaji, sohbet_gecmisi or [])
 
     def _sistem_talimati_olustur(self) -> str:
         # 'BUSINESS_CONTEXT' arıyoruz
@@ -30,7 +31,7 @@ class YapayZekaServisi:
         mesajlar_dizisi.append({"role": "user", "content": kullanici_mesaji})
 
         gonderilecek_veri = {
-            "model": "llama-3.1-8b-instant",
+            "model": "openai/gpt-oss-20b",
             "messages": mesajlar_dizisi,
             "max_tokens": 500,
             "temperature": 0.7,
