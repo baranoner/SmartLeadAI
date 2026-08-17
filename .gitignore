@@ -28,3 +28,4 @@ Thumbs.db
 
 # Render / Deployment
 *.log
+request.http
