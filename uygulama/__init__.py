@@ -27,9 +27,8 @@ def uygulama_olustur(ayar_adi: str = None) -> Flask:
         veritabani_baslat(uygulama)
 
     # Uygulamanın alt modüllerini (Rotaları) ana sisteme monte ediyoruz
-    from uygulama.rotalar import api_arayuzu, sayfa_arayuzu
+    from uygulama.rotalar import api_arayuzu
     uygulama.register_blueprint(api_arayuzu, url_prefix="/api")
-    uygulama.register_blueprint(sayfa_arayuzu)
 
     @uygulama.route("/saglik-durumu")
     def saglik_kontrolu():
